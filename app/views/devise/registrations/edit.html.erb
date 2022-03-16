@@ -1,0 +1,53 @@
+<div class="row justify-content-center">
+  <div class="col-4 text-center">
+    <h4>Edit Profile</h4>
+    
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="form-floating mb-3">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control  form-control-sm", id: "floatingInput", placeholder: "name@example.com" %>
+        <%= f.label :email, 'E-mail address', {for: "floatingInput"} %>
+      </div>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+      <div class="form-floating mb-3">
+        <%= f.text_field :phone, autocomplete: "phone", class: "form-control form-control-sm" , id: "floatingPhone", placeholder: "Phone" %>
+        <%= f.label :phone, {for: "floatingPhone"} %>
+        <small>(10 digits, e.g. 0671231234)</small>
+      </div>
+
+      <div class="form-floating mb-3">
+        <%= f.password_field :password, autocomplete: "current-password", class: "form-control form-control-sm" , id: "floatingPassword", placeholder: "Password" %>
+        <%= f.label :password, {for: "floatingPassword"} %>
+        <% if @minimum_password_length %>
+        <small>(<%= @minimum_password_length %> characters minimum)</small>
+        <% end %><br>
+      </div>
+
+      <div class="form-floating mb-3">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control form-control-sm" , id: "floatingPassword_confirmation", placeholder: "Password confirmation" %>
+        <%= f.label :password_confirmation, {for: "floatingPassword_confirmation"} %>
+      </div>
+
+      <div class="form-floating mb-3">
+        <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control form-control-sm" , id: "floatingCurrent_password", placeholder: "Current_Password" %>
+        <%= f.label :current_password, {for: "floatingCurrent_password"} %>
+        <small>(we need your current password to confirm your changes)</small>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Update" %>
+      </div>
+    <% end %>
+
+    <h3>Cancel my account</h3>
+
+    <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+
+    <%= link_to "Back", :back %>
+  </div>
+</div>

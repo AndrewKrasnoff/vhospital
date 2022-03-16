@@ -1,0 +1,2 @@
+class Subcat < ApplicationRecord
+end
