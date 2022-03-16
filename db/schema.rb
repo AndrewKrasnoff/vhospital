@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2022_03_16_201139) do
     t.integer "category_id"
     t.string "phone"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    # t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end
