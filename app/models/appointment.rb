@@ -5,6 +5,6 @@ class Appointment < ApplicationRecord
   validates :answer, presence: true, if: :should_validate?
 
   def should_validate?
-    !new_record? || current_user.type == 'Patient'
+    !new_record?
   end
 end
