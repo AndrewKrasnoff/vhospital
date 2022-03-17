@@ -1,10 +1,22 @@
 <tr>
   <td><%= appointment.id %></td>
-  <td><%= appointment.doctor.email %></td>
-  <td><%= appointment.doctor.phone %></td>
-  <td><%= appointment.doctor.category.name %></td>
+  <% if current_user.type == 'Patient' %>
+    <td><%= appointment.doctor.email %></td>
+    <td><%= appointment.doctor.phone %></td>
+    <td><%= appointment.doctor.category.name %></td>
+  <% end %>
+  <% if current_user.type == 'Doctor' %>
+    <td><%= appointment.patient.email %></td>
+    <td><%= appointment.patient.phone %></td>
+  <% end %>
   <td><%= appointment.created_at.strftime("%e.%m.%y at %H:%M") %></td>
   <td><%= appointment.updated_at.strftime("%e.%m.%y at %H:%M") if appointment.answer != nil %></td>
   <td><%= appointment.answer.nil? ? 'PENDING' : "CLOSED" %></td>
-  <td><%= link_to 'View', appointment_path(appointment), class: 'btn btn-primary btn-sm' %></td>
+  <td>
+    <%= link_to 'View', appointment_path(appointment), class: 'btn btn-primary btn-sm' %>
+    <% if current_user.type == 'Doctor' && appointment.answer.nil? %>
+      <%= link_to 'Send Answer', edit_appointment_path(appointment), class: 'btn btn-primary btn-sm' %>
+    <% end %>
+  </td>
+  
 </tr>

@@ -1,15 +1,27 @@
 <h4>Your appointments</h4>
 <table class="table">
+  
   <thead>
     <tr>
-      <th>#</th>
-      <th>Doctor</th>
-      <th>Phone</th>
-      <th>Specialization</th>
-      <th>Created At</th>
-      <th>Closed At</th>
-      <th>Status</th>
-      <th></th>
+      <% if current_user.type == 'Patient' %>
+        <th>#</th>
+        <th>Doctor</th>
+        <th>Phone</th>
+        <th>Specialization</th>
+        <th>Created At</th>
+        <th>Closed At</th>
+        <th>Status</th>
+        <th></th>
+      <% end %>
+      <% if current_user.type == 'Doctor' %>
+        <th>#</th>
+        <th>Patient</th>
+        <th>Phone</th>
+        <th>Created At</th>
+        <th>Closed At</th>
+        <th>Status</th>
+        <th></th>
+      <% end %>
     </tr>  
   </thead>  
   <tbody>

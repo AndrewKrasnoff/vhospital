@@ -9,4 +9,7 @@
       <%= link_to 'New Appoinment', new_appointment_path(@appointment, doctor_id: doctor.id), class: "btn btn-primary btn-sm"  %>
     </td>
   <% end %>
+  <td>
+    <%= Appointment.where(doctor_id: doctor.id, answer: nil).count < 10 ? 'avaliable' : 'unavaliable' %>
+  </td>
 </tr>
