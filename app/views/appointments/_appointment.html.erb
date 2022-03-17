@@ -1,0 +1,10 @@
+<tr>
+  <td><%= appointment.id %></td>
+  <td><%= appointment.doctor.email %></td>
+  <td><%= appointment.doctor.phone %></td>
+  <td><%= appointment.doctor.category.name %></td>
+  <td><%= appointment.created_at.strftime("%e.%m.%y at %H:%M") %></td>
+  <td><%= appointment.updated_at.strftime("%e.%m.%y at %H:%M") if appointment.answer != nil %></td>
+  <td><%= appointment.answer.nil? ? 'PENDING' : "CLOSED" %></td>
+  <td><%= link_to 'View', appointment_path(appointment), class: 'btn btn-primary btn-sm' %></td>
+</tr>

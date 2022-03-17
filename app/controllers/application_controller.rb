@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
-  add_flash_types :success, :danger
+  add_flash_types :success, :danger, :info
   #before_action :configure_permitted_parameters, if: :devise_controller?
   protect_from_forgery with: :exception
 

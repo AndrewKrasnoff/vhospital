@@ -9,27 +9,32 @@
         <li class="nav-item">
           <%= link_to 'Home', root_path, class: 'nav-link active'  %>
         </li>
-  
+        <% if user_signed_in? && (current_user.type == 'Doctor' || current_user.type == 'Patient') %>
+          <li class="nav-item">
+            <%= link_to 'Appointments', appointments_path, class: 'nav-link active'  %>
+          </li>
+        <% end %>
         <% if user_signed_in? && current_user.type == 'Admin' %>
+          <li class="nav-item">
+             <%= link_to 'Doctors List', doctors_path, class: 'nav-link active' %>
+          </li>
           <li class="nav-item">
              <%= link_to 'Categories', categories_path, class: 'nav-link active' %>
           </li>
         <% end %>
 
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
+        <% if user_signed_in? && current_user.type == 'Patient' %>
+        <li class="nav-item dropdown avtive">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
+            Doctors
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <% Category.order(:name).each do |category| %>
+              <%= link_to category.name, category, class: "dropdown-item"%>
+            <% end %>
           </ul>
         </li>
+        <% end %>
       </ul>
       <ul class="navbar-nav justify-content-end">
         <% if user_signed_in? %>

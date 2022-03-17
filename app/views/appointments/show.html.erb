@@ -1,0 +1,20 @@
+<div class="row justify-content-center">
+  <div class="col-4 text-center">
+    <h4>Appointment #<%= @appointment.id %></h4>
+    <div align=left>
+      <b>Doctor: </b><%= @appointment.doctor.email %><br>
+      <b>Specialization: </b><%= @appointment.doctor.category.name %><br><br>
+      <b>Question: </b><br>
+      <div class="alert alert-secondary" role="alert">
+        <%= @appointment.question %>
+      </div>
+      </b><br>
+      <b>Answer: </b><br>
+      <div class="alert alert-primary" role="alert">
+        <%= @appointment.answer.nil? ? 'THERE IS NO ANSWER FROM DOCTOR YET' : @appointment.answer %>
+      </div>
+      <%= link_to 'Back', :back, class: 'btn btn-outline-secondary btn-sm' %>
+    </div>
+    
+  </div>
+</div>

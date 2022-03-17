@@ -1,0 +1,33 @@
+<% if @appointment.errors.any? %>
+  <div class="alert alert-danger" role="alert" align=left >
+    <ul>
+      <% @appointment.errors.full_messages.each do |message| %>
+        <small><li><%= message %></li></small>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div align=left>
+  <b>Doctor: </b><%= @doctor.email %><br>
+  <b>Specialization: </b><%= @doctor.category.name %>
+</div>
+<br><br><br>
+<%= form_for @appointment do |form| %>
+  
+  <% if current_user.type == 'Patient' %>
+    <div class="mb-3" >
+      <%= form.label :question, 'Your question', class: "form-label" %>
+      <%= form.text_area :question, class: "form-control form-control-sm", style: "min-height: 10em"%>
+    </div>
+    <%= form.hidden_field :doctor_id, value: @doctor.id %>
+    <%= form.hidden_field :patient_id, value: current_user.id %>
+    
+
+    <div class="actions">
+      <%= form.submit "Create", class: "btn btn-primary btn-sm" %>
+    </div>
+<% end %>
+ 
+
+<% end %>
