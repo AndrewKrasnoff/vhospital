@@ -5,19 +5,11 @@
 <table class="table">
   <thead>
     <tr>
-      <th>#</th>
       <th>Category</th>
       <th></th>
     </tr>  
   </thead>  
   <tbody>
-    <% @categories.each_with_index do |category, index| %>
-      <tr>
-        <td><%= index + 1 %></td>
-        <td><%= category.name %></td>
-        <td>
-          <%= link_to 'Edit', edit_category_path(category), class: 'btn btn-primary btn-sm' %>
-        </td>
-    <% end %>
+      <%= render @categories %>
   </tbody>
 </table>

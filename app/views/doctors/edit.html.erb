@@ -1,0 +1,20 @@
+<div class="row justify-content-center">
+  <div class="col-4 text-center">
+    <h4>Change doctor's category</h4>
+    <div align=left>  
+      <b>Doctor: </b><%= @doctor.email %><br>
+      <b>Current category: </b> <%= @doctor.category.name %><br><br>
+
+
+      <%= form_for @doctor do |form| %>
+        <div class="mb-3" >
+          <%= form.label :select_new_category, class: "form-label" %>
+          <%= form.collection_select :category_id, @categories, :id, :name, {}, {class: "form-select form-select-sm"} %>
+        </div>
+        <%= form.submit 'Update', class: "btn btn-primary btn-sm" %>
+        <%= link_to 'Back', :back, class: 'btn btn-outline-secondary btn-sm' %>
+      <% end %>
+
+    </div>
+  </div>
+</div>      

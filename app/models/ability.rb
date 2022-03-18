@@ -8,16 +8,17 @@ class Ability
 
     if user.type == 'Admin'
       can :manage, Category
-      can [:update], Doctor
+      can %i[index show update], Doctor
+      can :read, Patient
     end
 
     if user.type == 'Patient'
       can [:show], Category
-      can %i[new create index show], Appointment
+      can %i[index show new create], Appointment
     end
 
     if user.type == 'Doctor'
-      can %i[show index update], Appointment
+      can %i[index show update], Appointment
     end
   end
 end

@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">vHospital</a>
+    <span class="navbar-brand mb-0 h1">vHospital</span>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -16,7 +16,10 @@
         <% end %>
         <% if user_signed_in? && current_user.type == 'Admin' %>
           <li class="nav-item">
-             <%= link_to 'Doctors List', doctors_path, class: 'nav-link active' %>
+             <%= link_to 'Doctors', doctors_path, class: 'nav-link active' %>
+          </li>
+          <li class="nav-item">
+             <%= link_to 'Patients', patients_path, class: 'nav-link active' %>
           </li>
           <li class="nav-item">
              <%= link_to 'Categories', categories_path, class: 'nav-link active' %>
@@ -51,6 +54,11 @@
     </div>
   </div>
 </nav>
-
+<% if user_signed_in? %>
+  <div class="alert alert-secondary" role="alert">
+    <b>User:</b>&nbsp;&nbsp;&nbsp;&nbsp;<%= current_user.type %>
+    &nbsp;&nbsp;&nbsp;&nbsp;<%= current_user.email %>
+    &nbsp;&nbsp;&nbsp;&nbsp;<%= current_user.phone %>
+  </div>
+<% end %>
 <%= render 'shared/flash' %>
-<%= current_user.type if user_signed_in? %>

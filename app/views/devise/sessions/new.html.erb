@@ -4,8 +4,9 @@
     <h4>Log In</h4>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="form-floating mb-3">
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control  form-control-sm", id: "floatingInput", placeholder: "name@example.com" %>
-        <%= f.label :email, 'E-mail address', {for: "floatingInput"} %>
+        <%= f.text_field  :phone, autofocus: true, autocomplete: "phone", class: "form-control  form-control-sm", id: "floatingPhone", placeholder: "1234567890" %>
+        <%= f.label :phone, 'Your phone', {for: "floatingPhone"} %>
+        <small>(10 digits, e.g. 0671231234)</small>
       </div>
       <div class="form-floating mb-3">
         <%= f.password_field :password, autocomplete: "current-password", class: "form-control form-control-sm" , id: "floatingPassword", placeholder: "Password" %>
