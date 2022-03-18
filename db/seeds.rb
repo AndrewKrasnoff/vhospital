@@ -6,7 +6,14 @@ Category.create(name: 'Dermatologists')
 Category.create(name: 'Ophthalmologists')
 Category.create(name: 'Cardiologists')
 
-25.times do
+10.times do
+  Doctor.create(email: Faker::Internet.email,
+                phone: (Faker::Number.number(digits: 10)).to_s,
+                category_id: Faker::Number.within(range: 1..5),
+                password: '123456', password_confirmation: '123456')
+end
+
+15.times do
   Doctor.create(email: Faker::Internet.email,
                 phone: (Faker::Number.number(digits: 10)).to_s,
                 category_id: Faker::Number.within(range: 1..5),
