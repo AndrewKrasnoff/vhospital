@@ -5,6 +5,6 @@ class PatientsController < ApplicationController
   load_and_authorize_resource
   
   def index
-    @patients = Patient.all
+    @patients = Patient.all.order(:email)
   end
 end
