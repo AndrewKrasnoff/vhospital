@@ -1,20 +1,17 @@
-<% if @doctors.count > 0 %>
-  <h4><%= @category.name %></h4>
+<h4><%= @category.name %></h4>
 
-  <table class="table">
-    <thead>
-      <tr>
-        <th>E-mail</th>
-        <th>Phone</th>
-        <th>Appointments</th>
-        <th>Status</th>
-      </tr>  
-    </thead>  
-    <tbody>
-      <%= render @doctors %>
-    <tbody>  
-  </table>
+<table class="table">
+  <thead>
+    <tr>
+      <th>E-mail</th>
+      <th>Phone</th>
+      <th>Appointments</th>
+      <th>Status</th>
+    </tr>  
+  </thead>  
+  <tbody>
+    <%= render @doctors %>
+  <tbody>  
+</table>
 
-<% else %>
-  <% flash.now[:info] = "There are no Doctors in #{@category.name}" %>
-<% end %>
+<% flash.now[:info] = "There are no Doctors in #{@category.name}" if @doctors.count.zero? %>

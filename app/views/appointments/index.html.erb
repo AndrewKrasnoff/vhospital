@@ -27,5 +27,5 @@
   <tbody>
     <%= render @appointments %>
   <tbody>  
-</table>  
-
+</table>
+<% flash.now[:info] = "You don't have any appointment yet" if @appointments.count.zero? %>

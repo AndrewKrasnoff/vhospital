@@ -8,7 +8,6 @@ class AppointmentsController < ApplicationController
   def index
     @appointments = Appointment.where(patient_id: current_user.id).order(answer: :DESC) if current_user.type == 'Patient'
     @appointments = Appointment.where(doctor_id: current_user.id).order(answer: :DESC) if current_user.type == 'Doctor'
-    flash.now[:info] = 'You have no any appoinments yet' if @appointments.count.zero?
   end
 
   def show; end

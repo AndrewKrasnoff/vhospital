@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @doctors = Doctor.where(category_id: @category)
+    @doctors = Doctor.where(category_id: @category).order(:email)
   end
 
   def new
