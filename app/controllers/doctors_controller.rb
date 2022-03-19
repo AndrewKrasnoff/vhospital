@@ -6,7 +6,7 @@ class DoctorsController < ApplicationController
   before_action :set_doctor, only: %i[update edit]
   
   def index
-    @doctors = Doctor.all.order(:email)
+    @doctors = Doctor.includes(:category).order('categories.name', :email)
   end
 
   def update
