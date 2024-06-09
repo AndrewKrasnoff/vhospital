@@ -1,7 +1,7 @@
 class Patients::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters
   protect_from_forgery with: :exception
-  
+
   def create
     params[:user] = params[:user]&.merge(type: 'Patient')
     super

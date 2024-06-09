@@ -8,13 +8,13 @@ Category.create(name: 'Cardiologists')
 
 10.times do
   Doctor.create(email: Faker::Internet.email,
-                phone: (Faker::Number.number(digits: 10)).to_s,
+                phone: Faker::Number.number(digits: 10).to_s,
                 category_id: Faker::Number.within(range: 1..5),
                 password: '123456', password_confirmation: '123456')
 end
 
 15.times do
   Patient.create(email: Faker::Internet.email,
-                phone: (Faker::Number.number(digits: 10)).to_s,
-                password: '123456', password_confirmation: '123456')
+                 phone: Faker::Number.number(digits: 10).to_s,
+                 password: '123456', password_confirmation: '123456')
 end

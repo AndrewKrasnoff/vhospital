@@ -6,7 +6,9 @@ class AppointmentsController < ApplicationController
   before_action :set_appointment, only: %i[show edit update]
 
   def index
-    @appointments = Appointment.where(patient_id: current_user.id).order(answer: :DESC) if current_user.type == 'Patient'
+    if current_user.type == 'Patient'
+      @appointments = Appointment.where(patient_id: current_user.id).order(answer: :DESC)
+    end
     @appointments = Appointment.where(doctor_id: current_user.id).order(answer: :DESC) if current_user.type == 'Doctor'
   end
 

@@ -5,5 +5,4 @@ Rails.application.routes.draw do
   resources :categories, except: :destroy
   resources :appointments
   root 'home#index'
-
 end

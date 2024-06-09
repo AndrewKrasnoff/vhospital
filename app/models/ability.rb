@@ -17,8 +17,8 @@ class Ability
       can %i[index show new create], Appointment
     end
 
-    if user.type == 'Doctor'
-      can %i[index show update], Appointment
-    end
+    return unless user.type == 'Doctor'
+
+    can %i[index show update], Appointment
   end
 end
