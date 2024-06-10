@@ -16,9 +16,10 @@ gem 'turbolinks', '~> 5.2', '>= 5.2.1'
 gem 'webpacker', '~> 5.4', '>= 5.4.4'
 
 group :development, :test do
-  gem 'byebug', '~> 11.1', '>= 11.1.3', platforms: %i[mri mingw x64_mingw]
+  gem 'annotate', '~> 3.2'
+  gem 'byebug', '~> 11.1', '>= 11.1.3',  platforms: %i[mri mingw x64_mingw]
   gem 'rubocop', '~> 1.64', '>= 1.64.1', require: false
-  gem 'rubocop-rails', '~> 2.25', require: false
+  gem 'rubocop-rails', '~> 2.25',        require: false
 end
 
 group :development do

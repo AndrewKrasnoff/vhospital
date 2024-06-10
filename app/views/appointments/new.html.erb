@@ -13,7 +13,7 @@
 
       <div align=left>
         <b>Doctor: </b><%= @doctor.email %><br>
-        <b>Specialization: </b><%= @doctor.category.name %>
+        <b>Specialization: </b><%= @doctor.category&.name %>
       </div>
       <br><br><br>
       <%= form_for @appointment do |form| %>
@@ -24,7 +24,7 @@
           </div>
           <%= form.hidden_field :doctor_id, value: @doctor.id %>
           <%= form.hidden_field :patient_id, value: current_user.id %>
-          
+
 
           <div class="actions">
             <%= form.submit "Create", class: "btn btn-primary btn-sm" %>

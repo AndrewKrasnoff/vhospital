@@ -6,70 +6,59 @@
 
 https://vhospital-cod.herokuapp.com/
 
-login: 1234567890<br>
-password: test123
+### Stack & Features
+
+| Name             | Technologies                                                                                           |
+|------------------|--------------------------------------------------------------------------------------------------------|
+| Backend          | Ruby 3.2.4<br/>Rails 7.1                                                                               |
+| Frontend         | CSS, SCSS<br/>HTML, ERB<br/>Bootstrap                                                                  |
+| Database         | PostgreSQL                                                                                             |
+| Server           | Puma                                                                                                   |
+| Testing Tools    | RSpec<br/>Shoulda Matchers<br/>FactoryBot<br/>Faker                                                    |
+| Linters          | Rubocop<br/>ERBLint<br/>ESLint                                                                         |
+| Authorization    | Cancancan                                                                                              |
+| Authentication   | Devise                                                                                                 |
+
+### Credentials
+
+| User type       | Login                                       | Password          |
+|-----------------|---------------------------------------------|-------------------|
+| Admin           | 1234567890                                  | test123           |
+|                 |                                             |                   |
+| Patients        | See list of patients<br/>when login as admin| 123456<br/>for all|
+|                 |                                             |                   |
+| Doctors         | See list of doctors<br/>when login as admin | 123456<br/>for all|
+
 
 ### Task description
 
-Реализовать проект по управлению поликлиникой
+To create application to manage hospital
 
-Виды пользователей:
-- пациент (User)
-- врач (Doctor)
-- Admin
+Users' types:
+- patient (User)
+- doctor (Doctor)
+- admin (Admin)
 
-Для каждого вида пользователей необходимо реализовать следующий функционал:
+Each type of users should have such functionality:
 
-1. Пациент может зарегистрироваться, войти в свой личный кабинет (Profile),
-просматривать список врачей по категориям, записаться на прием, получить
-рекомендации от врача после приема.
-2. Врач может войти в личный кабинет (Profile), просмотреть список записавшихся
-пациентов, дать рекомендации пациенту. Врач может относится к определенной
-категории (терапевт, кардиолог и тд).
-3. Админ имеет доступ к списку пациентов и врачей. Может создавать категории, врачей, асайнить определенного врача к категории. (можно реализовать через ActiveAdmin/Administrate)
+1. Patient can register and login to it account. Can see doctoctors' list by categories,
+can make assignment with any doctor, and can recieve recommendations from doctor.
+2. Doctor can login to it account. Can see list of assignments, write an answer to patient.
+Doctor is assigned to one of the categiries.
+3. Admin has access to lists of patients and doctros. Can create category and assign (reassign) doctors to categories.
 
-Требования по аутентификации и авторизации:
-- использовать devise;
-- реализовать login через phone-password;
-- использовать gem cancancan для разграничения прав пользователей;
-
-Требования по таблице категорий:
-- валидация на уникальность по имени;
-- возможность добавления нескольких врачей;
-
-Требования по таблицам Врач-Пациент:
-- реализовать связь many-to-many;
-- у врача может быть только 10 открытых записей (одновременно);
-- пациент может иметь только одну окрытую запись с одним врачом;
-- запись автоматически закрывается (не удаляется) после того, как врач напишет пользователю рекомендацию;
+Authentication and authorization requirements:
+- use gem devise for authentication;
+- use gem cancancan for authorization
+- all users can login using their phone number and password;
 
 
-Логины врачей (пароль для всех: 123456)
-- 6547073234
-- 5385173683
-- 1940809394
-- 5797468188	
-- 2356798216
-- 9377719104
-- 2708141972
-- 7474014903
-- 9759456332
-- 8696764325
+Categories requirements:
+- validation by uniq name;
+- can by assigned to several doctors;
 
-Логины пациентов (пароль для всех: 123456)
+Assignments requirements:
+- doctor can have only 10 open (not answered) assignments at a time;
+- patient can hane only 1 (not answered) assignment with the same doctor;
+- assignment is closed (ad stred, not deleted) when doctor write an answe to patent;
 
-- 6979379928
-- 7426403992
-- 3707972942
-- 2504062233
-- 9182227926
-- 5954781030
-- 6743403430
-- 4145577318
-- 4878094029
-- 4746442327
-- 8337692293
-- 5983537761
-- 3647046268
-- 4655946817
-- 1407486951

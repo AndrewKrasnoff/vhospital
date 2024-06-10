@@ -30,4 +30,17 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  flash_messages:
+    appointments:
+      created: 'Appointment was created successfuly'
+      not_created: 'Appointment was not created'
+      closed: 'This Appointment is CLOSED!'
+      assigned: 'You already have pending appointment with this doctor'
+      has_ten: 'Doctor already has 10 pending appointments. New appointment is unavaliable'
+      answer_published: 'The Answer was puplished succesfuly'
+      answwer_not_published: 'The Answer was NOT puplished'
+    categories:
+      created: 'Category was created successfuly'
+      not_created: 'Category was not created'
+      updated: 'Category was updated successfuly'
+      not_updated: 'Category was not updated'

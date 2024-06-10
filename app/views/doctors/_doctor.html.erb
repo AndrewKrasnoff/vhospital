@@ -2,9 +2,9 @@
   <td><%= doctor.email %></td>
   <td><%= doctor.phone %></td>
   <% if current_user.type == 'Admin'%>
-    <td><%= doctor.category.name %></td>
+    <td><%= doctor.category&.name %></td>
     <td><%= link_to 'Change Category', edit_doctor_path(doctor.id), class: "btn btn-primary btn-sm"  %></td>
-  <% end %>  
+  <% end %>
   <% if current_user.type == 'Patient'%>
     <td>
       <%= link_to 'New Appoinment', new_appointment_path(@appointment, doctor_id: doctor.id), class: "btn btn-primary btn-sm"  %>

@@ -13,30 +13,30 @@ class CategoriesController < ApplicationController
 
   def new
     @category = Category.new
-    @categories = Category.all.order(:name)
-  end
-
-  def create
-    @category = Category.new(category_params)
-    if @category.save
-      redirect_to categories_path, success: 'Category was created successfuly'
-    else
-      @categories = Category.all.order(:name)
-      flash.now[:danger] = 'Category was not created'
-      render :new
-    end
+    @categories = Category.order(:name)
   end
 
   def edit
     @categories = Category.where("id != #{@category.id}").order(:name)
   end
 
+  def create
+    @category = Category.new(category_params)
+    if @category.save
+      redirect_to categories_path, success: I18n.t('flash_messages.categories.created')
+    else
+      @categories = Category.order(:name)
+      flash.now[:danger] = I18n.t('flash_messages.categories.not_created')
+      render :new
+    end
+  end
+
   def update
     if @category.update(category_params)
-      redirect_to categories_path, success: 'Category was updated successfuly'
+      redirect_to categories_path, success: I18n.t('flash_messages.categories.updated')
     else
       @categories = Category.where("id != #{@category.id}").order(:name)
-      flash.now[:danger] = 'Category was not updated'
+      flash.now[:danger] = I18n.t('flash_messages.categories.not_updated')
       render :edit
     end
   end

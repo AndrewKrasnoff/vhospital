@@ -3,6 +3,9 @@ inherit_from: .rubocop_todo.yml
 require:
   - rubocop-rails
 
+AllCops:
+  NewCops: enable
+
 Style/FrozenStringLiteralComment:
   Enabled: false
 

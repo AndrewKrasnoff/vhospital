@@ -9,17 +9,17 @@ class DoctorsController < ApplicationController
     @doctors = Doctor.includes(:category).order('categories.name', :email)
   end
 
-  def update
-    if @doctor.update(doctor_params)
-      redirect_to doctors_path, success: "Doctor's category was updated successfuly"
-    else
-      flash.now[:danger] = 'Category was NOT updated'
-      render :edit
-    end
+  def edit
+    @categories = cateories_list(@doctor)
   end
 
-  def edit
-    @categories = Category.where("id != #{@doctor.category.id}").order(:name)
+  def update
+    if @doctor.update(doctor_params)
+      redirect_to doctors_path, success: I18n.t('flash_messages.categories.updated')
+    else
+      flash.now[:danger] = I18n.t('flash_messages.categories.not_updated')
+      render :edit
+    end
   end
 
   private
@@ -30,5 +30,13 @@ class DoctorsController < ApplicationController
 
   def doctor_params
     params.require(:doctor).permit(:category_id)
+  end
+
+  def cateories_list(doctor)
+    if doctor.category.present?
+      Category.where("id != #{@doctor.category.id}").order(:name)
+    else
+      Category.all
+    end
   end
 end

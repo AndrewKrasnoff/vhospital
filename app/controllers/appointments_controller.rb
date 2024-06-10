@@ -14,40 +14,40 @@ class AppointmentsController < ApplicationController
 
   def show; end
 
-  def edit
-    redirect_to appointment_path(@appointment.id), info: 'This Appointment is CLOSED!' unless @appointment.answer.nil?
-  end
-
   def new
     @doctor = Doctor.find(params[:doctor_id])
-    @appointment_user_active = Appointment.where(patient_id: current_user.id, doctor_id: @doctor.id, answer: nil).count
-    @appointment_doctor_active = Appointment.where(doctor_id: @doctor.id, answer: nil).count
-    if @appointment_user_active.positive?
-      redirect_to appointments_path, info: 'You already have pending appointment with this doctor'
-    elsif @appointment_doctor_active >= 10
+    if user_active_appointments.positive?
+      redirect_to appointments_path, info: I18n.t('flash_messages.appointments.assigned')
+    elsif doctor_active_appointments >= 10
       redirect_to category_path(@doctor.category_id),
-                  info: 'Doctor already has 10 pending appointments. New appointment is unavaliable'
+                  info: I18n.t('flash_messages.appointments.has_ten')
     else
       @appointment = Appointment.new
     end
   end
 
+  def edit
+    return if @appointment.answer.nil?
+
+    redirect_to appointment_path(@appointment.id), info: I18n.t('flash_messages.appointments.closed')
+  end
+
   def create
     @appointment = Appointment.new(appointment_params)
     if @appointment.save
-      redirect_to appointments_path, success: 'Appointment was created successfuly'
+      redirect_to appointments_path, success: I18n.t('flash_messages.appointments.created')
     else
       @doctor = Doctor.find(appointment_params[:doctor_id])
-      flash.now[:danger] = 'Appointment was not created'
+      flash.now[:danger] = I18n.t('flash_messages.appointments.not_created')
       render :new
     end
   end
 
   def update
     if @appointment.update(appointment_params)
-      redirect_to appointments_path, success: 'The Answer was puplished succesfuly'
+      redirect_to appointments_path, success: I18n.t('flash_messages.appointments.answer_published')
     else
-      flash.now[:danger] = 'The Answer was NOT puplished'
+      flash.now[:danger] = I18n.t('flash_messages.appointments.answwer_not_published')
       render :edit
     end
   end
@@ -64,5 +64,13 @@ class AppointmentsController < ApplicationController
     else
       params.require(:appointment).permit(:answer)
     end
+  end
+
+  def user_active_appointments
+    Appointment.where(patient_id: current_user.id, doctor_id: @doctor.id, answer: nil).count
+  end
+
+  def doctor_active_appointments
+    Appointment.where(doctor_id: @doctor.id, answer: nil).count
   end
 end

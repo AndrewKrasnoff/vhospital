@@ -1,9 +1,9 @@
 <div class="row justify-content-center">
   <div class="col-4 text-center">
     <h4>Change doctor's category</h4>
-    <div align=left>  
+    <div align=left>
       <b>Doctor: </b><%= @doctor.email %><br>
-      <b>Current category: </b> <%= @doctor.category.name %><br><br>
+      <b>Current category: </b> <%= @doctor.category&.name %><br><br>
 
 
       <%= form_for @doctor do |form| %>
@@ -17,4 +17,4 @@
 
     </div>
   </div>
-</div>      
+</div>
