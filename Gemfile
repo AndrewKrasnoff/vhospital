@@ -17,7 +17,8 @@ gem 'webpacker', '~> 5.4', '>= 5.4.4'
 
 group :development, :test do
   gem 'annotate', '~> 3.2'
-  gem 'byebug', '~> 11.1', '>= 11.1.3',  platforms: %i[mri mingw x64_mingw]
+  gem 'byebug', '~> 11.1', '>= 11.1.3', platforms: %i[mri mingw x64_mingw]
+  gem 'rspec-rails', '~> 6.1', '>= 6.1.2'
   gem 'rubocop', '~> 1.64', '>= 1.64.1', require: false
   gem 'rubocop-rails', '~> 2.25',        require: false
 end
@@ -30,7 +31,7 @@ group :development do
 end
 
 group :test do
-  # gem 'capybara', '~> 3.40'
+  gem 'shoulda-matchers', '~> 6.2'
 end
 
 gem 'tzinfo-data', '~> 1.2024', '>= 1.2024.1', platforms: %i[mingw mswin x64_mingw jruby]
