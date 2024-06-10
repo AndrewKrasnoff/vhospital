@@ -18,6 +18,7 @@ gem 'webpacker', '~> 5.4', '>= 5.4.4'
 group :development, :test do
   gem 'annotate', '~> 3.2'
   gem 'byebug', '~> 11.1', '>= 11.1.3',  platforms: %i[mri mingw x64_mingw]
+  gem 'erb_lint', '~> 0.5.0',            require: false
   gem 'rubocop', '~> 1.64', '>= 1.64.1', require: false
   gem 'rubocop-rails', '~> 2.25',        require: false
 end
